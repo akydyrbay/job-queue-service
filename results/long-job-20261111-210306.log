@@ -1,0 +1,16 @@
+# Wed Nov 11 21:03:06 +05 2026 — long job vs lease, no heartbeat (macOS, local Postgres 16.2)
+job f435925d-ddfd-413d-bf59-490279d8106e: work_ms=3000, LEASE_SECONDS=2, MAX_ATTEMPTS=5, 2 workers
+2026-11-11 21:03:08,420 INFO event=claimed worker=akydyrbay-65943-d818eeb6 job=f435925d-ddfd-413d-bf59-490279d8106e attempt=1
+2026-11-11 21:03:10,476 INFO event=claimed worker=akydyrbay-65944-62bc6c23 job=f435925d-ddfd-413d-bf59-490279d8106e attempt=2
+2026-11-11 21:03:11,427 INFO event=stale_rejected worker=akydyrbay-65943-d818eeb6 job=f435925d-ddfd-413d-bf59-490279d8106e attempt=1
+2026-11-11 21:03:12,515 INFO event=claimed worker=akydyrbay-65943-d818eeb6 job=f435925d-ddfd-413d-bf59-490279d8106e attempt=3
+2026-11-11 21:03:13,482 INFO event=stale_rejected worker=akydyrbay-65944-62bc6c23 job=f435925d-ddfd-413d-bf59-490279d8106e attempt=2
+2026-11-11 21:03:14,584 INFO event=claimed worker=akydyrbay-65944-62bc6c23 job=f435925d-ddfd-413d-bf59-490279d8106e attempt=4
+2026-11-11 21:03:15,554 INFO event=stale_rejected worker=akydyrbay-65943-d818eeb6 job=f435925d-ddfd-413d-bf59-490279d8106e attempt=3
+2026-11-11 21:03:16,668 INFO event=claimed worker=akydyrbay-65943-d818eeb6 job=f435925d-ddfd-413d-bf59-490279d8106e attempt=5
+2026-11-11 21:03:17,589 INFO event=stale_rejected worker=akydyrbay-65944-62bc6c23 job=f435925d-ddfd-413d-bf59-490279d8106e attempt=4
+2026-11-11 21:03:19,658 INFO event=gave_up worker=akydyrbay-65944-62bc6c23 job=f435925d-ddfd-413d-bf59-490279d8106e
+2026-11-11 21:03:19,669 INFO event=stale_rejected worker=akydyrbay-65943-d818eeb6 job=f435925d-ddfd-413d-bf59-490279d8106e attempt=5
+
+after 13.6s: status=failed attempts=5 side_effects=0 last_error='gave up: lease expired on every one of 5 attempts'
+work done: 5 full executions of a job that never died; result: failed

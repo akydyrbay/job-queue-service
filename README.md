@@ -3,6 +3,10 @@
 A training job queue built on FastAPI and PostgreSQL. Workers claim jobs with
 `FOR UPDATE SKIP LOCKED` and lease timeouts.
 
+**Start here: [report.md](report.md)**, with the verdict at 100 req/s, the
+reflection, what broke, the AI tool disclosure, and links to every
+deliverable and every run.
+
 ## Layout
 
 ```

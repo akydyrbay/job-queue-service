@@ -113,3 +113,10 @@ analysis is in [docs/load_test.md](../docs/load_test.md).
 | `load-20261111-204859` | Ramp 100 → 1000 req/s | FAIL: backlog grows from 250 req/s, API collapses at 600 |
 | `load-20261111-205332` | 600 req/s, API pool 30 | FAIL: CPU-bound, not pool-bound |
 | `load-20261111-205438` | 100 req/s, docker-compose workers (4 × 50–300 ms) | FAIL: API fine, backlog grows about 24 jobs/s |
+
+## Long job vs lease
+
+`long-job-20261111-210306.log`: one 3 s job, a 2 s lease, no heartbeat, 2
+workers. It ran 5 times (twice on two workers at once) and ended `failed`
+although no worker died, with 0 side effects. It's the basis of the verdict in
+[REPORT.md](../REPORT.md).
