@@ -25,7 +25,7 @@ GIVE_UP_CHECK_SECONDS = 1.0
 def make_worker_id() -> str:
     # The pid makes it easy to match log lines to the process the harness
     # kills; the random suffix keeps ids unique if a pid is reused.
-    return f"{socket.gethostname()}-{os.getpid()}-{secrets.token_hex(2)}"
+    return f"{socket.gethostname()}-{os.getpid()}-{secrets.token_hex(4)}"
 
 
 def do_work(job: dict, settings: Settings) -> tuple[str, str | None, str | None]:
