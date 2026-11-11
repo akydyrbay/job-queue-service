@@ -43,8 +43,6 @@ CREATE TABLE IF NOT EXISTS jobs (
 -- ("no job has more than one execution").
 -- Deliberately NOT unique on job_id: a duplicate execution must show up as a
 -- second row the harness can count, not be hidden by a constraint error.
--- Phase 3 prevents duplicates by inserting this row in the same transaction
--- as the lease-guarded 'succeeded' update.
 CREATE TABLE IF NOT EXISTS job_execution_logs (
     id             BIGSERIAL    PRIMARY KEY,
     job_id         UUID         NOT NULL REFERENCES jobs (id) ON DELETE CASCADE,

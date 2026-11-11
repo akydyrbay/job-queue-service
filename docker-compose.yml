@@ -27,5 +27,21 @@ services:
       db:
         condition: service_healthy
 
+  worker:
+    build: .
+    command: ["python", "-m", "worker.main"]
+    environment:
+      DATABASE_URL: postgresql://jobqueue:jobqueue@db:5432/jobqueue
+      LEASE_SECONDS: "10"
+      MAX_ATTEMPTS: "5"
+      FAIL_RATE: "0.05"
+    deploy:
+      replicas: 4
+    stop_grace_period: 15s
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+
 volumes:
   pgdata:

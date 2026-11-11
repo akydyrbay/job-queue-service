@@ -13,10 +13,15 @@ app/
   models.py   request/response schemas
   repository.py  SQL for jobs
   routes/jobs.py job endpoints
+worker/
+  main.py     worker loop: claim, simulate work, finish; SIGTERM handling
+  queue.py    claim / guarded finish / give-up SQL
 db/
   schema.sql  jobs and job_execution_logs tables, indexes, trigger (safe to re-run)
 tests/
-  test_api.py endpoint tests against a real Postgres
+  test_api.py         endpoint tests against a real Postgres
+  test_worker.py      claim/finish interleavings step by step (zombie, cancel, give-up)
+  test_worker_e2e.py  4 worker processes drain 500 jobs, one killed with kill -9
 docs/
   design_note.md  one-page design: claiming, dead workers, cancellation, guarantee
   design.md       database choice, schema and concurrency decisions
@@ -48,6 +53,27 @@ The API applies `db/schema.sql` on startup. The schema is safe to re-run.
 | `GET` | `/jobs/{id}` | The job, or `404`. |
 | `GET` | `/jobs?page=1&limit=20&status=queued` | Newest first. `limit` is 1–100; `status` is optional. Returns `{items, page, limit, total}`. |
 | `POST` | `/jobs/{id}/cancel` | Cancels a `queued` or `running` job. Cancelling an already cancelled job returns it unchanged (`200`). A `succeeded` or `failed` job returns `409`. |
+
+## Workers
+
+`docker compose up` starts 4 workers. Change the number with
+`docker compose up --scale worker=8`. Locally: `python -m worker.main`.
+
+| Env var | Default | Meaning |
+| --- | --- | --- |
+| `LEASE_SECONDS` | `10` | How long a claim is valid. A dead worker's job is picked up again after this. |
+| `MAX_ATTEMPTS` | `5` | After this many claims whose lease ran out, the job is marked `failed`. |
+| `FAIL_RATE` | `0` (`0.05` in compose) | Chance a simulated job fails. A failure is final; only crashes are retried. |
+| `WORK_MIN_MS` / `WORK_MAX_MS` | `50` / `300` | Simulated job duration. |
+| `POLL_INTERVAL_MS` | `100` | Idle sleep between claims (plus random jitter). |
+
+A job payload can force behaviour: `{"work_ms": 1500}` sets the duration and
+`{"fail": true}` always fails.
+
+Each worker prints one line per event (`claimed`, `succeeded`, `failed`,
+`stale_rejected`, `gave_up`, `db_error`), with its worker id and the job id.
+SIGTERM lets the current job finish before the worker exits; `kill -9` is
+handled by lease expiry.
 
 ## Tests
 
