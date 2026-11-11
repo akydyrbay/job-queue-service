@@ -25,10 +25,12 @@ tests/
   test_api.py         endpoint tests against a real Postgres
   test_worker.py      claim/finish interleavings step by step (zombie, cancel, give-up)
   test_worker_e2e.py  4 worker processes drain 500 jobs, one killed with kill -9
+  test_silent_failures.py  one test per silent failure, with negative controls
 docs/
   design_note.md  one-page design: claiming, dead workers, cancellation, guarantee
   design.md       database choice, schema and concurrency decisions
   harness.md      what the chaos harness does, its invariants, and what it doesn't catch
+  silent_failures.md  each silent failure: protection, how it was checked, evidence
 ```
 
 ## Run

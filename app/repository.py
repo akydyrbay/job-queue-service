@@ -62,6 +62,14 @@ async def list_jobs(page: int, limit: int, status: str | None) -> tuple[list[dic
     return items, total
 
 
+CANCEL_SQL = f"""
+    UPDATE jobs
+    SET status = 'cancelled', finished_at = NOW(), lease_expires_at = NULL
+    WHERE id = %s AND status IN ('queued', 'running')
+    RETURNING {JOB_COLUMNS}
+"""
+
+
 async def cancel_job(job_id: UUID) -> tuple[dict | None, bool]:
     """Cancel a queued or running job.
 
@@ -72,15 +80,7 @@ async def cancel_job(job_id: UUID) -> tuple[dict | None, bool]:
     match 0 rows because status is no longer 'running'.
     """
     async with pool.connection() as conn:
-        cur = await conn.execute(
-            f"""
-            UPDATE jobs
-            SET status = 'cancelled', finished_at = NOW(), lease_expires_at = NULL
-            WHERE id = %s AND status IN ('queued', 'running')
-            RETURNING {JOB_COLUMNS}
-            """,
-            (job_id,),
-        )
+        cur = await conn.execute(CANCEL_SQL, (job_id,))
         row = await cur.fetchone()
         if row is not None:
             return row, True

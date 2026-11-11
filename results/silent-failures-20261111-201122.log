@@ -1,0 +1,29 @@
+# pytest tests/test_silent_failures.py -v -s  (Postgres 16.2, macOS, Wed Nov 11 20:11:22 +05 2026)
+============================= test session starts ==============================
+platform darwin -- Python 3.12.0, pytest-8.3.4, pluggy-1.7.0 -- /private/tmp/claude-501/-Users-bake-72-Desktop-soup/b0ffc030-f6df-4912-a418-d72074486a36/scratchpad/venv/bin/python
+rootdir: /Users/bake.72/Desktop/soup/job-queue-service
+plugins: platformdirs-4.14.5, anyio-4.16.0
+collecting ... collected 18 items
+
+tests/test_silent_failures.py::test_double_claim_locked_row_is_skipped_not_shared PASSED
+tests/test_silent_failures.py::test_double_claim_16_threads_each_job_claimed_once PASSED
+tests/test_silent_failures.py::test_negative_control_naive_claim_double_claims PASSED
+tests/test_silent_failures.py::test_frozen_worker_process_cannot_write_after_lease_expired PASSED
+tests/test_silent_failures.py::test_negative_control_unguarded_finish_lets_zombie_overwrite PASSED
+tests/test_silent_failures.py::test_cancel_and_complete_racing_never_mix 
+cancel/complete race outcomes over 300 runs: {'finish won': 91, 'cancel won': 209}
+PASSED
+tests/test_silent_failures.py::test_negative_control_finish_without_status_check_overrides_cancel PASSED
+tests/test_silent_failures.py::test_retry_while_first_insert_is_uncommitted_returns_the_same_job PASSED
+tests/test_silent_failures.py::test_retry_after_first_insert_rolled_back_creates_the_job PASSED
+tests/test_silent_failures.py::test_100_concurrent_posts_with_one_key PASSED
+tests/test_silent_failures.py::test_api_and_worker_connections_use_read_committed PASSED
+tests/test_silent_failures.py::test_claim_under_repeatable_read_fails_instead_of_skipping PASSED
+tests/test_silent_failures.py::test_negative_control_check_then_insert_duplicates_under_read_committed PASSED
+tests/test_silent_failures.py::test_no_wall_clock_reads_in_service_code PASSED
+tests/test_silent_failures.py::test_worker_with_skewed_clock_gets_a_normal_lease[1] PASSED
+tests/test_silent_failures.py::test_worker_with_skewed_clock_gets_a_normal_lease[-1] PASSED
+tests/test_silent_failures.py::test_negative_control_lease_from_worker_clock_is_reclaimed_immediately PASSED
+tests/test_silent_failures.py::test_crash_between_status_update_and_commit_leaves_no_trace PASSED
+
+============================= 18 passed in 12.55s ==============================
