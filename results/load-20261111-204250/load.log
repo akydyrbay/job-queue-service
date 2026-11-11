@@ -1,0 +1,25 @@
+[    0.0s] run load-20261111-204250: --start-api --reset --database-url postgresql://postgres:@/postgres?host=/private/tmp/jq_pgtest --stages 100:20 --seed 1 --results-dir /private/tmp/claude-501/-Users-bake-72-Desktop-soup/b0ffc030-f6df-4912-a418-d72074486a36/scratchpad/loadsmoke
+[    1.3s] tables truncated (--reset)
+[    1.3s] api health: 200 {"status":"ok","database":"ok"}
+[    1.4s] started 8 workers (work 20-100 ms, fail rate 0.05); settling for 5s
+[    6.4s] stage 0: 100 req/s for 20s
+[   11.4s]   last 5s: done=501 (100/s) p50=5.2ms p99=27.6ms errors=0 queued=1 running=2 db_conns=13 cpu: generator=14% api=26%
+[   16.4s]   last 5s: done=500 (100/s) p50=5.0ms p99=9.4ms errors=0 queued=0 running=4 db_conns=13 cpu: generator=15% api=26%
+[   21.4s]   last 5s: done=500 (100/s) p50=5.1ms p99=9.5ms errors=0 queued=0 running=3 db_conns=13 cpu: generator=14% api=25%
+[   26.4s] load finished; waiting for 1 in-flight requests
+[   26.4s]   last 5s: done=499 (100/s) p50=5.1ms p99=8.9ms errors=0 queued=3 running=2 db_conns=13 cpu: generator=15% api=28%
+[   27.4s] backlog after load: queued=0 running=0 (waited 1.0s)
+[   31.7s] 
+[   31.7s] === results per stage ===
+[   31.7s] stage 0: target 100 req/s, achieved 100.0 req/s, 2000 requests -> PASS
+[   31.7s]   errors: 0.000% {'ok': 2000}
+[   31.7s]   cancel  n=   187 p50=4.9ms p95=6.9ms p99=11.6ms max=11.8ms
+[   31.7s]   create  n=  1019 p50=5.5ms p95=7.3ms p99=10.4ms max=64.9ms
+[   31.7s]   get     n=   599 p50=4.3ms p95=5.5ms p99=7.8ms max=11.7ms
+[   31.7s]   list    n=   195 p50=6.3ms p95=8.5ms p99=11.0ms max=63.0ms
+[   31.7s]   queue: avg queued first third=1.0 last third=1.8 max=5 growing=False
+[   31.7s]   db connections max=13  generator lag p50=0.8ms p99=2.0ms max=6.8ms
+[   31.7s]   cpu: generator avg=15% max=15%  api avg=26% max=28%
+[   31.7s] 
+[   31.7s] RESULT: PASS
+[   31.8s] raw output: /private/tmp/claude-501/-Users-bake-72-Desktop-soup/b0ffc030-f6df-4912-a418-d72074486a36/scratchpad/loadsmoke/load-20261111-204250

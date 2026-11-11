@@ -1,0 +1,81 @@
+[    0.0s] run load-20261111-204332: --start-api --reset --database-url postgresql://postgres:@/postgres?host=/private/tmp/jq_pgtest --stages 100:300 --seed 1 --note steady 100 req/s for 5 min, aiohttp client
+[    1.5s] tables truncated (--reset)
+[    1.5s] api health: 200 {"status":"ok","database":"ok"}
+[    1.7s] started 8 workers (work 20-100 ms, fail rate 0.05); settling for 5s
+[    6.7s] stage 0: 100 req/s for 300s
+[   11.7s]   last 5s: done=501 (100/s) p50=5.3ms p99=139.0ms errors=0 queued=0 running=4 db_conns=18 cpu: generator=11% api=20%
+[   16.7s]   last 5s: done=500 (100/s) p50=4.9ms p99=38.3ms errors=0 queued=0 running=4 db_conns=18 cpu: generator=12% api=21%
+[   21.7s]   last 5s: done=501 (100/s) p50=5.2ms p99=252.2ms errors=0 queued=1 running=2 db_conns=19 cpu: generator=12% api=22%
+[   26.7s]   last 5s: done=500 (100/s) p50=4.5ms p99=33.0ms errors=0 queued=3 running=2 db_conns=19 cpu: generator=11% api=21%
+[   31.7s]   last 5s: done=498 (100/s) p50=4.8ms p99=32.0ms errors=0 queued=0 running=2 db_conns=19 cpu: generator=14% api=26%
+[   36.7s]   last 5s: done=503 (101/s) p50=4.6ms p99=86.6ms errors=0 queued=1 running=4 db_conns=19 cpu: generator=14% api=25%
+[   41.7s]   last 5s: done=500 (100/s) p50=5.4ms p99=167.9ms errors=0 queued=1 running=5 db_conns=19 cpu: generator=12% api=22%
+[   46.7s]   last 5s: done=500 (100/s) p50=5.0ms p99=50.4ms errors=0 queued=1 running=4 db_conns=19 cpu: generator=13% api=21%
+[   51.7s]   last 5s: done=500 (100/s) p50=5.4ms p99=147.6ms errors=0 queued=1 running=3 db_conns=19 cpu: generator=12% api=21%
+[   56.7s]   last 5s: done=500 (100/s) p50=7.4ms p99=282.9ms errors=0 queued=10 running=0 db_conns=19 cpu: generator=11% api=21%
+[   61.7s]   last 5s: done=500 (100/s) p50=5.0ms p99=15.2ms errors=0 queued=0 running=6 db_conns=19 cpu: generator=13% api=23%
+[   66.7s]   last 5s: done=500 (100/s) p50=5.2ms p99=13.6ms errors=0 queued=1 running=3 db_conns=19 cpu: generator=15% api=26%
+[   71.7s]   last 5s: done=501 (100/s) p50=5.2ms p99=151.0ms errors=0 queued=0 running=7 db_conns=19 cpu: generator=12% api=21%
+[   76.7s]   last 5s: done=500 (100/s) p50=5.0ms p99=11.6ms errors=0 queued=1 running=2 db_conns=19 cpu: generator=14% api=25%
+[   81.7s]   last 5s: done=500 (100/s) p50=5.1ms p99=10.4ms errors=0 queued=1 running=4 db_conns=19 cpu: generator=16% api=28%
+[   86.7s]   last 5s: done=500 (100/s) p50=5.3ms p99=10.5ms errors=0 queued=2 running=2 db_conns=19 cpu: generator=16% api=27%
+[   91.7s]   last 5s: done=500 (100/s) p50=5.2ms p99=11.8ms errors=0 queued=1 running=2 db_conns=19 cpu: generator=15% api=25%
+[   96.7s]   last 5s: done=501 (100/s) p50=5.4ms p99=74.1ms errors=0 queued=1 running=3 db_conns=19 cpu: generator=13% api=22%
+[  101.7s]   last 5s: done=500 (100/s) p50=5.5ms p99=365.0ms errors=0 queued=0 running=4 db_conns=19 cpu: generator=16% api=26%
+[  106.7s]   last 5s: done=500 (100/s) p50=5.2ms p99=162.4ms errors=0 queued=0 running=4 db_conns=19 cpu: generator=14% api=24%
+[  111.7s]   last 5s: done=500 (100/s) p50=5.0ms p99=11.5ms errors=0 queued=0 running=2 db_conns=19 cpu: generator=14% api=25%
+[  116.7s]   last 5s: done=500 (100/s) p50=5.2ms p99=11.2ms errors=0 queued=2 running=3 db_conns=19 cpu: generator=16% api=26%
+[  121.7s]   last 5s: done=500 (100/s) p50=5.0ms p99=80.6ms errors=0 queued=3 running=0 db_conns=19 cpu: generator=15% api=28%
+[  126.7s]   last 5s: done=500 (100/s) p50=5.2ms p99=11.1ms errors=0 queued=2 running=1 db_conns=19 cpu: generator=15% api=26%
+[  131.7s]   last 5s: done=501 (100/s) p50=4.9ms p99=10.7ms errors=0 queued=1 running=3 db_conns=19 cpu: generator=14% api=24%
+[  136.7s]   last 5s: done=500 (100/s) p50=5.1ms p99=22.2ms errors=0 queued=1 running=5 db_conns=19 cpu: generator=15% api=27%
+[  141.7s]   last 5s: done=500 (100/s) p50=5.2ms p99=24.5ms errors=0 queued=0 running=4 db_conns=19 cpu: generator=15% api=26%
+[  146.7s]   last 5s: done=500 (100/s) p50=5.0ms p99=10.1ms errors=0 queued=0 running=3 db_conns=19 cpu: generator=14% api=25%
+[  151.7s]   last 5s: done=500 (100/s) p50=5.0ms p99=13.7ms errors=0 queued=2 running=4 db_conns=19 cpu: generator=14% api=24%
+[  156.7s]   last 5s: done=500 (100/s) p50=5.2ms p99=200.8ms errors=0 queued=2 running=1 db_conns=19 cpu: generator=14% api=24%
+[  161.7s]   last 5s: done=501 (100/s) p50=4.9ms p99=13.8ms errors=0 queued=2 running=2 db_conns=19 cpu: generator=17% api=24%
+[  166.7s]   last 5s: done=500 (100/s) p50=5.1ms p99=10.1ms errors=0 queued=1 running=3 db_conns=19 cpu: generator=14% api=25%
+[  171.8s]   last 5s: done=500 (100/s) p50=5.1ms p99=10.1ms errors=0 queued=1 running=3 db_conns=19 cpu: generator=14% api=23%
+[  176.8s]   last 5s: done=500 (100/s) p50=4.9ms p99=11.2ms errors=0 queued=0 running=3 db_conns=19 cpu: generator=15% api=26%
+[  181.8s]   last 5s: done=500 (100/s) p50=4.9ms p99=9.9ms errors=0 queued=0 running=4 db_conns=19 cpu: generator=14% api=25%
+[  186.8s]   last 5s: done=500 (100/s) p50=5.1ms p99=10.1ms errors=0 queued=1 running=6 db_conns=19 cpu: generator=15% api=26%
+[  191.8s]   last 5s: done=501 (100/s) p50=5.1ms p99=95.4ms errors=0 queued=0 running=0 db_conns=19 cpu: generator=14% api=23%
+[  196.8s]   last 5s: done=500 (100/s) p50=5.0ms p99=10.9ms errors=0 queued=1 running=1 db_conns=19 cpu: generator=15% api=25%
+[  201.8s]   last 5s: done=500 (100/s) p50=4.9ms p99=17.8ms errors=0 queued=2 running=2 db_conns=19 cpu: generator=14% api=24%
+[  206.8s]   last 5s: done=500 (100/s) p50=5.1ms p99=87.5ms errors=0 queued=3 running=5 db_conns=19 cpu: generator=15% api=25%
+[  211.8s]   last 5s: done=500 (100/s) p50=4.9ms p99=11.4ms errors=0 queued=0 running=4 db_conns=19 cpu: generator=14% api=25%
+[  216.8s]   last 5s: done=500 (100/s) p50=4.9ms p99=11.5ms errors=0 queued=0 running=5 db_conns=19 cpu: generator=13% api=23%
+[  221.8s]   last 5s: done=500 (100/s) p50=4.4ms p99=13.1ms errors=0 queued=2 running=4 db_conns=19 cpu: generator=13% api=24%
+[  226.8s]   last 5s: done=500 (100/s) p50=4.9ms p99=36.4ms errors=0 queued=0 running=4 db_conns=19 cpu: generator=14% api=24%
+[  231.8s]   last 5s: done=500 (100/s) p50=5.9ms p99=332.6ms errors=0 queued=2 running=4 db_conns=19 cpu: generator=13% api=24%
+[  236.8s]   last 5s: done=501 (100/s) p50=5.2ms p99=116.3ms errors=0 queued=0 running=4 db_conns=19 cpu: generator=12% api=24%
+[  241.8s]   last 5s: done=471 (94/s) p50=4.9ms p99=222.0ms errors=0 queued=2 running=4 db_conns=19 cpu: generator=14% api=24%
+[  246.8s]   last 5s: done=529 (106/s) p50=4.5ms p99=275.2ms errors=0 queued=0 running=6 db_conns=19 cpu: generator=12% api=22%
+[  251.8s]   last 5s: done=500 (100/s) p50=6.0ms p99=145.4ms errors=0 queued=1 running=2 db_conns=19 cpu: generator=14% api=24%
+[  256.8s]   last 5s: done=500 (100/s) p50=5.1ms p99=41.0ms errors=0 queued=1 running=2 db_conns=19 cpu: generator=13% api=24%
+[  261.8s]   last 5s: done=501 (100/s) p50=5.0ms p99=9.5ms errors=0 queued=2 running=3 db_conns=19 cpu: generator=14% api=23%
+[  266.8s]   last 5s: done=500 (100/s) p50=5.1ms p99=19.0ms errors=0 queued=1 running=1 db_conns=19 cpu: generator=15% api=25%
+[  271.8s]   last 5s: done=500 (100/s) p50=5.0ms p99=11.2ms errors=0 queued=2 running=1 db_conns=19 cpu: generator=15% api=26%
+[  276.8s]   last 5s: done=500 (100/s) p50=5.1ms p99=13.4ms errors=0 queued=1 running=1 db_conns=19 cpu: generator=14% api=26%
+[  281.8s]   last 5s: done=500 (100/s) p50=5.0ms p99=10.6ms errors=0 queued=0 running=2 db_conns=19 cpu: generator=15% api=26%
+[  286.8s]   last 5s: done=500 (100/s) p50=5.0ms p99=10.4ms errors=0 queued=0 running=4 db_conns=19 cpu: generator=14% api=23%
+[  291.8s]   last 5s: done=500 (100/s) p50=5.0ms p99=12.1ms errors=0 queued=4 running=3 db_conns=19 cpu: generator=14% api=25%
+[  296.8s]   last 5s: done=493 (99/s) p50=8.1ms p99=1070.8ms errors=0 queued=0 running=4 db_conns=19 cpu: generator=11% api=20%
+[  301.8s]   last 5s: done=508 (102/s) p50=5.0ms p99=536.5ms errors=0 queued=1 running=3 db_conns=19 cpu: generator=13% api=22%
+[  306.7s] load finished; waiting for 1 in-flight requests
+[  306.8s]   last 5s: done=489 (98/s) p50=4.8ms p99=13.4ms errors=0 queued=2 running=3 db_conns=19 cpu: generator=14% api=23%
+[  307.7s] backlog after load: queued=0 running=0 (waited 1.0s)
+[  312.6s] 
+[  312.6s] === results per stage ===
+[  312.6s] stage 0: target 100 req/s, achieved 100.0 req/s, 30000 requests -> PASS
+[  312.6s]   errors: 0.000% {'ok': 30000}
+[  312.6s]   cancel  n=  3020 p50=4.7ms p95=15.2ms p99=162.2ms max=983.9ms
+[  312.6s]   create  n= 15074 p50=5.4ms p95=19.8ms p99=184.0ms max=1070.8ms
+[  312.6s]   get     n=  8930 p50=4.2ms p95=17.8ms p99=185.7ms max=1080.7ms
+[  312.6s]   list    n=  2976 p50=7.9ms p95=22.3ms p99=184.6ms max=1176.4ms
+[  312.6s]   queue: avg queued first third=1.3 last third=0.8 max=10 growing=False
+[  312.6s]   db connections max=20  generator lag p50=0.8ms p99=37.3ms max=535.0ms
+[  312.6s]   cpu: generator avg=14% max=43%  api avg=24% max=124%
+[  312.6s] 
+[  312.6s] RESULT: PASS
+[  312.8s] raw output: /Users/bake.72/Desktop/soup/job-queue-service/results/load-20261111-204332

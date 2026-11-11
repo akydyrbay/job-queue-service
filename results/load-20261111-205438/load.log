@@ -1,0 +1,33 @@
+[    0.0s] run load-20261111-205438: --start-api --reset --database-url postgresql://postgres:@/postgres?host=/private/tmp/jq_pgtest --stages 100:60 --workers 4 --work-min-ms 50 --work-max-ms 300 --seed 4 --drain-wait 120 --note 100 req/s with the docker-compose worker settings: 4 workers, 50-300 ms jobs
+[    1.1s] tables truncated (--reset)
+[    1.1s] api health: 200 {"status":"ok","database":"ok"}
+[    1.1s] started 4 workers (work 50-300 ms, fail rate 0.05); settling for 5s
+[    6.1s] stage 0: 100 req/s for 60s
+[   11.1s]   last 5s: done=501 (100/s) p50=5.3ms p99=14.5ms errors=0 queued=95 running=4 db_conns=9 cpu: generator=14% api=25%
+[   16.1s]   last 5s: done=500 (100/s) p50=5.3ms p99=138.4ms errors=0 queued=204 running=4 db_conns=9 cpu: generator=14% api=25%
+[   21.1s]   last 5s: done=500 (100/s) p50=5.4ms p99=10.8ms errors=0 queued=320 running=4 db_conns=15 cpu: generator=14% api=24%
+[   26.1s]   last 5s: done=500 (100/s) p50=5.3ms p99=9.6ms errors=0 queued=447 running=4 db_conns=15 cpu: generator=14% api=25%
+[   31.1s]   last 5s: done=501 (100/s) p50=5.4ms p99=161.7ms errors=0 queued=575 running=4 db_conns=15 cpu: generator=15% api=26%
+[   36.1s]   last 5s: done=499 (100/s) p50=5.3ms p99=12.5ms errors=0 queued=714 running=4 db_conns=15 cpu: generator=15% api=25%
+[   41.1s]   last 5s: done=501 (100/s) p50=5.3ms p99=67.4ms errors=0 queued=828 running=4 db_conns=15 cpu: generator=15% api=27%
+[   46.1s]   last 5s: done=500 (100/s) p50=5.3ms p99=13.7ms errors=0 queued=949 running=4 db_conns=15 cpu: generator=15% api=27%
+[   51.1s]   last 5s: done=500 (100/s) p50=5.3ms p99=194.3ms errors=0 queued=1081 running=4 db_conns=15 cpu: generator=15% api=25%
+[   56.1s]   last 5s: done=500 (100/s) p50=5.3ms p99=11.8ms errors=0 queued=1203 running=4 db_conns=15 cpu: generator=15% api=27%
+[   61.1s]   last 5s: done=500 (100/s) p50=5.4ms p99=10.8ms errors=0 queued=1333 running=4 db_conns=15 cpu: generator=15% api=26%
+[   66.1s] load finished; waiting for 1 in-flight requests
+[   66.1s]   last 5s: done=498 (100/s) p50=5.4ms p99=120.0ms errors=0 queued=1436 running=4 db_conns=15 cpu: generator=14% api=24%
+[  136.4s] backlog after load: queued=0 running=0 (waited 70.3s)
+[  141.4s] 
+[  141.4s] === results per stage ===
+[  141.4s] stage 0: target 100 req/s, achieved 100.0 req/s, 6000 requests -> FAIL
+[  141.4s]   errors: 0.000% {'ok': 6000}
+[  141.4s]   cancel  n=   579 p50=5.1ms p95=9.2ms p99=116.7ms max=193.2ms
+[  141.4s]   create  n=  3034 p50=5.6ms p95=8.7ms p99=93.9ms max=205.3ms
+[  141.4s]   get     n=  1763 p50=4.3ms p95=6.9ms p99=110.8ms max=203.7ms
+[  141.4s]   list    n=   624 p50=6.7ms p95=10.9ms p99=96.7ms max=231.1ms
+[  141.4s]   queue: avg queued first third=229.8 last third=1231.6 max=1472 growing=True
+[  141.4s]   db connections max=15  generator lag p50=0.8ms p99=12.8ms max=152.7ms
+[  141.4s]   cpu: generator avg=15% max=16%  api avg=26% max=28%
+[  141.4s] 
+[  141.4s] RESULT: FAIL
+[  141.6s] raw output: /Users/bake.72/Desktop/soup/job-queue-service/results/load-20261111-205438

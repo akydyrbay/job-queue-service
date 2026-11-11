@@ -93,8 +93,9 @@ claimed twice.
   would not be protected.
 - **Clock problems.** Leases use the database clock only. The harness never
   skews worker clocks or jumps the database clock.
-- **Load.** 10,000 jobs at about 75–170 jobs/s (plus duplicates and
-  cancels) through one uvicorn process. Behaviour at 10x is untested
+- **Load.** The harness's client (httpx) tops out at about 200 req/s, so it
+  never pushes the API hard. Load is measured separately in
+  [load_test.md](load_test.md)
 - **Cancel/finish races, reliably.** How many cancels land on a running job
   depends on timing. It ranged from 3 to 380 per run (see
   [results](../results/README.md)). With jobs of 20–100 ms, cancels sent

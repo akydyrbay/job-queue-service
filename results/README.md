@@ -71,8 +71,11 @@ jobs.
   those jobs were reclaimed. A held job could also be cancelled while its
   lease was running out, or finish between the harness's check and the kill.
 - Submitting the 10,000 unique jobs took 58–134 s, about 75–170 jobs/s, on
-  top of the duplicate and cancel traffic, through one uvicorn process with a
-  10-connection pool. That matters for the 100 req/s verdict.
+  top of the duplicate and cancel traffic. **Correction (Phase 7):** I first
+  read this as the API's limit. It's mostly the harness's own: httpx costs
+  about 4.5 ms of client CPU per request, which caps one client process at
+  roughly 200 req/s. Measured with a lighter client, the same API handles
+  about 400 req/s cleanly (see the load tests below).
 
 ## Mutation runs
 
@@ -95,3 +98,18 @@ used a bash feature that the macOS bash doesn't support, so all three were
 labelled "m3". Run 8's note also wrongly said "5% slow jobs". I corrected the
 `note` fields in `runs.csv` and `summary.json` (marked `note_corrected`) based
 on run order and outcome. No measured values were changed.
+
+## Load tests
+
+Separate from the chaos runs: a fixed request rate with workers running, no
+kills. Each `load-*` folder has `load.log`, `api.log` and `summary.json`. The
+analysis is in [docs/load_test.md](../docs/load_test.md).
+
+| Run | What | Result |
+| --- | --- | --- |
+| `load-20261111-202937` | 100 req/s for 5 min, httpx client | **Invalid**: the load generator saturated (95% CPU) while the API sat idle. Stopped by hand, no summary. |
+| `load-20261111-204250` | 100 req/s for 20 s, aiohttp (smoke) | PASS |
+| `load-20261111-204332` | 100 req/s for 5 min | **PASS**: 0 errors, p99 about 185 ms, queue flat |
+| `load-20261111-204859` | Ramp 100 → 1000 req/s | FAIL: backlog grows from 250 req/s, API collapses at 600 |
+| `load-20261111-205332` | 600 req/s, API pool 30 | FAIL: CPU-bound, not pool-bound |
+| `load-20261111-205438` | 100 req/s, docker-compose workers (4 × 50–300 ms) | FAIL: API fine, backlog grows about 24 jobs/s |

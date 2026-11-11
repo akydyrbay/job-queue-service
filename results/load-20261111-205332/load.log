@@ -1,0 +1,28 @@
+[    0.0s] run load-20261111-205332: --start-api --reset --database-url postgresql://postgres:@/postgres?host=/private/tmp/jq_pgtest --stages 600:30 --seed 3 --drain-wait 5 --note 600 req/s with API pool max 30 (default 10): is the collapse pool-bound or CPU-bound?
+[    1.3s] tables truncated (--reset)
+[    1.3s] api health: 200 {"status":"ok","database":"ok"}
+[    1.5s] started 8 workers (work 20-100 ms, fail rate 0.05); settling for 5s
+[    6.5s] stage 0: 600 req/s for 30s
+[   11.5s]   last 5s: done=2622 (524/s) p50=254.2ms p99=3798.8ms errors=1222 queued=155 running=8 db_conns=39 cpu: generator=45% api=62%
+[   16.5s]   last 5s: done=2705 (541/s) p50=711.1ms p99=3695.2ms errors=348 queued=776 running=8 db_conns=39 cpu: generator=42% api=67%
+[   21.5s]   last 5s: done=2604 (521/s) p50=1260.2ms p99=2955.1ms errors=0 queued=1398 running=8 db_conns=39 cpu: generator=54% api=90%
+[   26.5s]   last 5s: done=2545 (509/s) p50=2180.9ms p99=3034.8ms errors=0 queued=1874 running=8 db_conns=39 cpu: generator=45% api=87%
+[   31.5s]   last 5s: done=2641 (528/s) p50=2757.1ms p99=3174.0ms errors=0 queued=2523 running=8 db_conns=39 cpu: generator=48% api=89%
+[   36.5s] load finished; waiting for 2393 in-flight requests
+[   36.5s]   last 5s: done=2490 (498/s) p50=3518.3ms p99=3906.7ms errors=0 queued=3160 running=7 db_conns=39 cpu: generator=48% api=84%
+[   41.6s]   last 5s: done=2393 (479/s) p50=4284.6ms p99=4461.2ms errors=0 queued=3796 running=8 db_conns=39 cpu: generator=10% api=27%
+[   45.4s] backlog after load: queued=3338 running=8 (waited 5.0s)
+[   46.9s] 
+[   46.9s] === results per stage ===
+[   46.9s] stage 0: target 600 req/s, achieved 600.0 req/s, 18000 requests -> FAIL
+[   46.9s]   errors: 8.722% {'ok': 16430, 'UnixClientConnectorError': 1570}
+[   46.9s]   cancel  n=  1722 p50=2398.5ms p95=4335.8ms p99=4454.0ms max=4471.2ms
+[   46.9s]   create  n=  8967 p50=2341.2ms p95=4317.4ms p99=4443.2ms max=4463.0ms
+[   46.9s]   get     n=  5466 p50=2372.0ms p95=4317.4ms p99=4442.4ms max=4462.9ms
+[   46.9s]   list    n=  1845 p50=2342.8ms p95=4336.0ms p99=4455.8ms max=4476.2ms
+[   46.9s]   queue: avg queued first third=252.9 last third=2647.0 max=3160 growing=True
+[   46.9s]   db connections max=39  generator lag p50=0.4ms p99=124.6ms max=213.0ms
+[   46.9s]   cpu: generator avg=49% max=76%  api avg=82% max=93%
+[   46.9s] 
+[   46.9s] RESULT: FAIL
+[   47.1s] raw output: /Users/bake.72/Desktop/soup/job-queue-service/results/load-20261111-205332

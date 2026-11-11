@@ -1,0 +1,11 @@
+[    0.0s] run load-20261111-202937: --start-api --reset --database-url postgresql://postgres:@/postgres?host=/private/tmp/jq_pgtest --stages 100:300 --seed 1 --note steady 100 req/s, 5 min
+[    1.3s] tables truncated (--reset)
+[    1.3s] api health: 200 {"status":"ok","database":"ok"}
+[    1.4s] started 8 workers (work 20-100 ms, fail rate 0.05); settling for 5s
+[    6.4s] stage 0: 100 req/s for 300s
+[   11.4s]   last 5s: done=489 (98/s) p50=28.8ms p99=604.0ms errors=0 queued=0 running=4 db_conns=12
+[   16.5s]   last 5s: done=373 (75/s) p50=113.8ms p99=1739.2ms errors=0 queued=1 running=0 db_conns=13
+[   21.5s]   last 5s: done=319 (64/s) p50=1620.6ms p99=5331.6ms errors=0 queued=1 running=1 db_conns=13
+[   28.5s]   last 5s: done=161 (32/s) p50=4159.9ms p99=11823.6ms errors=0 queued=0 running=0 db_conns=17
+[   50.3s]   last 5s: done=99 (20/s) p50=26895.1ms p99=32850.5ms errors=54 queued=0 running=0 db_conns=17
+[  271.2s]   last 5s: done=611 (122/s) p50=33748.7ms p99=241993.5ms errors=601 queued=0 running=0 db_conns=17

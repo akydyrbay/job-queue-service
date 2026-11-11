@@ -18,6 +18,7 @@ worker/
   queue.py    claim / guarded finish / give-up SQL
 harness/
   harness.py  chaos test: 10k jobs, 8 workers, kill -9 every ~2 s, invariant checks
+  load.py     open-loop load test: fixed req/s with workers running
 results/      raw output of every harness run, including failed ones
 db/
   schema.sql  jobs and job_execution_logs tables, indexes, trigger (safe to re-run)
@@ -31,6 +32,7 @@ docs/
   design.md       database choice, schema and concurrency decisions
   harness.md      what the chaos harness does, its invariants, and what it doesn't catch
   silent_failures.md  each silent failure: protection, how it was checked, evidence
+  load_test.md    100 req/s and ramp results, what breaks first
 ```
 
 ## Run
@@ -106,3 +108,14 @@ python -m harness.harness --reset \
 Without Docker, add `--start-api` to run the API on a unix socket. Exit code 0
 means every invariant passed. See [docs/harness.md](docs/harness.md) for the
 details and [results/README.md](results/README.md) for every run so far.
+
+## Load test
+
+```bash
+python -m harness.load --reset --start-api \
+  --database-url postgresql://jobqueue:jobqueue@localhost:5432/jobqueue \
+  --stages 100:300                      # rate:seconds, comma-separate for a ramp
+```
+
+A stage passes with errors below 0.1%, p99 below 500 ms, and a queue that
+doesn't keep growing. Results and analysis: [docs/load_test.md](docs/load_test.md).
