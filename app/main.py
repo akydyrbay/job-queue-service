@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
 from app.db import apply_schema, missing_tables, pool
+from app.routes import jobs
 
 
 @asynccontextmanager
@@ -15,6 +16,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Job Queue Service", lifespan=lifespan)
+app.include_router(jobs.router)
 
 
 @app.get("/health")
