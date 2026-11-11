@@ -13,7 +13,8 @@ app/
 db/
   schema.sql  jobs and job_execution_logs tables, indexes, trigger (safe to re-run)
 docs/
-  design.md   database choice, schema and concurrency decisions
+  design_note.md  one-page design: claiming, dead workers, cancellation, guarantee
+  design.md       database choice, schema and concurrency decisions
 ```
 
 ## Run
