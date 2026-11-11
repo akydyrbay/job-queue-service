@@ -1,0 +1,5 @@
+run,result,jobs,workers,kills,reclaimed,duration_s,final_status_counts,note
+20261111-194911,FAIL,2000,8,9,0,20.1,"{""cancelled"": 9, ""failed"": 86, ""succeeded"": 1905}",MUTATION m1: finish without ownership guard (WHERE id only)
+20261111-194939,FAIL,2000,8,11,1,25.0,"{""cancelled"": 10, ""failed"": 97, ""succeeded"": 1893}",MUTATION m2: side effect inserted before/outside the guarded update
+20261111-195010,PASS,2000,8,10,309,22.1,"{""cancelled"": 33, ""failed"": 88, ""succeeded"": 1879}","MUTATION m3: naive claim (SELECT then UPDATE, no row lock)"
+20261111-195105,FAIL,2000,8,9,294,21.1,"{""cancelled"": 84, ""failed"": 120, ""succeeded"": 1796}",MUTATION m3 rerun after adding invariant 8 (no double claims)

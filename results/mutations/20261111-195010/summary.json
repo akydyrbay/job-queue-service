@@ -1,0 +1,172 @@
+{
+  "run": "20261111-195010",
+  "passed": true,
+  "args": {
+    "api_url": "http://localhost:8000",
+    "uds": null,
+    "start_api": true,
+    "reset": true,
+    "jobs": 2000,
+    "workers": 8,
+    "kill_interval": 2.0,
+    "lease": 5,
+    "work_min_ms": 20,
+    "work_max_ms": 100,
+    "fail_rate": 0.05,
+    "concurrency": 64,
+    "race_dup_rate": 0.1,
+    "dup_senders": 4,
+    "cancels": 1000,
+    "cancel_senders": 12,
+    "timeout": 600,
+    "seed": 11,
+    "results_dir": "/Users/bake.72/Desktop/soup/job-queue-service/results/mutations",
+    "note": "MUTATION m3: naive claim (SELECT then UPDATE, no row lock)"
+  },
+  "invariants": [
+    {
+      "name": "1 no job lost",
+      "passed": true,
+      "detail": "db rows=2000 expected=2000 missing_keys=0 acked_but_missing=0 acked_id_mismatch=0 never_acked_by_api=0"
+    },
+    {
+      "name": "2 at most one side effect",
+      "passed": true,
+      "detail": "jobs with >1 effect=0"
+    },
+    {
+      "name": "3 effect matches state",
+      "passed": true,
+      "detail": "succeeded_without_1_effect_or_other_with_effect=0 effects_for_unknown_jobs=0 effect_not_from_final_attempt=0"
+    },
+    {
+      "name": "4 none stuck in queued/running",
+      "passed": true,
+      "detail": "drained_in_time=True queued=0 running=0"
+    },
+    {
+      "name": "5 consistent final state",
+      "passed": true,
+      "detail": "keys_with_different_ids=0 keys_created_twice=0 unexpected_409=0 api_vs_db_mismatch=0/768 list_totals_mismatch=none"
+    },
+    {
+      "name": "6 cancels respected",
+      "passed": true,
+      "detail": "cancel_200=33 cancel_409=323 accepted_but_not_cancelled=0 409_but_not_finished=0 cancelled_without_a_cancel_request=0"
+    },
+    {
+      "name": "7 only harness workers ran jobs",
+      "passed": true,
+      "detail": "foreign_worker_ids=none"
+    }
+  ],
+  "stats": {
+    "jobs_reclaimed_after_lease_expiry": 309,
+    "max_attempts_seen": 5,
+    "jobs_cancelled_after_being_claimed": 29,
+    "jobs_given_up": 0,
+    "kills": 10,
+    "kills_while_holding_a_job": 9,
+    "racing_duplicate_posts": 201,
+    "late_duplicate_posts": 124,
+    "cancel_requests": 407,
+    "cancels_aimed_at_running_jobs": 159,
+    "http_errors": {},
+    "worker_events": {
+      "started": 18,
+      "claimed": 2329,
+      "stale_rejected": 353,
+      "succeeded": 1879,
+      "failed": 88,
+      "stopping": 8,
+      "stopped": 8
+    },
+    "duration_s": 22.1,
+    "final_status_counts": {
+      "failed": 88,
+      "succeeded": 1879,
+      "cancelled": 33
+    }
+  },
+  "kills": [
+    {
+      "t": 3.5,
+      "pid": 47919,
+      "held": [],
+      "replacement": 47951
+    },
+    {
+      "t": 5.55,
+      "pid": 47923,
+      "held": [
+        "7fd225d1-5525-4ee8-9b3c-8ededefe6926"
+      ],
+      "replacement": 47961
+    },
+    {
+      "t": 7.62,
+      "pid": 47951,
+      "held": [
+        "539b75c8-aee8-4998-9bee-6c1f3d87f032"
+      ],
+      "replacement": 47969
+    },
+    {
+      "t": 9.71,
+      "pid": 47921,
+      "held": [
+        "e54df388-ebc0-4411-99a5-bf5cb3b25858"
+      ],
+      "replacement": 47978
+    },
+    {
+      "t": 11.41,
+      "pid": 47924,
+      "held": [
+        "7ee6941c-e0d3-4b1f-9d1b-10b66fbd5f79"
+      ],
+      "replacement": 47982
+    },
+    {
+      "t": 14.07,
+      "pid": 47926,
+      "held": [
+        "bf3e8882-8a33-4bbd-a8f4-703db61d1a28"
+      ],
+      "replacement": 47997
+    },
+    {
+      "t": 15.93,
+      "pid": 47978,
+      "held": [
+        "a22ee36b-eac4-453f-83e9-3af9daa12a8b"
+      ],
+      "replacement": 48007
+    },
+    {
+      "t": 17.77,
+      "pid": 47982,
+      "held": [
+        "3ef1cc67-4535-4632-b15c-2514d107efec"
+      ],
+      "replacement": 48009
+    },
+    {
+      "t": 19.56,
+      "pid": 47920,
+      "held": [
+        "d01fb9eb-8d86-4266-96e6-d668110d89f6"
+      ],
+      "replacement": 48017
+    },
+    {
+      "t": 22.01,
+      "pid": 48009,
+      "held": [
+        "b4edc064-a83c-45bf-9b38-b3d696fae8b1"
+      ],
+      "replacement": 48028
+    }
+  ],
+  "note_corrected": "note fixed after the run (labelling mistake); measured values unchanged"
+}

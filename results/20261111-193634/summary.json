@@ -1,0 +1,477 @@
+{
+  "run": "20261111-193634",
+  "passed": true,
+  "args": {
+    "api_url": "http://localhost:8000",
+    "uds": null,
+    "start_api": true,
+    "reset": true,
+    "jobs": 10000,
+    "workers": 8,
+    "kill_interval": 2.0,
+    "lease": 5,
+    "work_min_ms": 20,
+    "work_max_ms": 100,
+    "fail_rate": 0.05,
+    "concurrency": 64,
+    "race_dup_rate": 0.1,
+    "dup_senders": 4,
+    "cancels": 1000,
+    "cancel_senders": 12,
+    "timeout": 600,
+    "seed": 4,
+    "results_dir": "/Users/bake.72/Desktop/soup/job-queue-service/results",
+    "note": "local: Postgres 16 (pgserver), uvicorn over unix socket, macOS; 12 cancel senders"
+  },
+  "invariants": [
+    {
+      "name": "1 no job lost",
+      "passed": true,
+      "detail": "db rows=10000 expected=10000 missing_keys=0 acked_but_missing=0 acked_id_mismatch=0 never_acked_by_api=0"
+    },
+    {
+      "name": "2 at most one side effect",
+      "passed": true,
+      "detail": "jobs with >1 effect=0"
+    },
+    {
+      "name": "3 effect matches state",
+      "passed": true,
+      "detail": "succeeded_without_1_effect_or_other_with_effect=0 effects_for_unknown_jobs=0 effect_not_from_final_attempt=0"
+    },
+    {
+      "name": "4 none stuck in queued/running",
+      "passed": true,
+      "detail": "drained_in_time=True queued=0 running=0"
+    },
+    {
+      "name": "5 consistent final state",
+      "passed": true,
+      "detail": "keys_with_different_ids=0 keys_created_twice=0 unexpected_409=0 api_vs_db_mismatch=0/1366 list_totals_mismatch=none"
+    },
+    {
+      "name": "6 cancels respected",
+      "passed": true,
+      "detail": "cancel_200=36 cancel_409=876 accepted_but_not_cancelled=0 409_but_not_finished=0 cancelled_without_a_cancel_request=0"
+    },
+    {
+      "name": "7 only harness workers ran jobs",
+      "passed": true,
+      "detail": "foreign_worker_ids=none"
+    }
+  ],
+  "stats": {
+    "jobs_reclaimed_after_lease_expiry": 11,
+    "max_attempts_seen": 2,
+    "jobs_cancelled_after_being_claimed": 36,
+    "jobs_given_up": 0,
+    "kills": 51,
+    "kills_while_holding_a_job": 39,
+    "racing_duplicate_posts": 966,
+    "late_duplicate_posts": 543,
+    "cancel_requests": 1001,
+    "cancels_aimed_at_running_jobs": 460,
+    "http_errors": {},
+    "worker_events": {
+      "started": 59,
+      "claimed": 10009,
+      "succeeded": 9474,
+      "failed": 490,
+      "stopping": 8,
+      "stopped": 8,
+      "stale_rejected": 4
+    },
+    "duration_s": 118.6,
+    "final_status_counts": {
+      "failed": 490,
+      "succeeded": 9474,
+      "cancelled": 36
+    }
+  },
+  "kills": [
+    {
+      "t": 3.39,
+      "pid": 43692,
+      "held": [
+        "ee639565-61ea-4ec5-9abb-b83b77adf0c1"
+      ],
+      "replacement": 43712
+    },
+    {
+      "t": 5.12,
+      "pid": 43691,
+      "held": [
+        "34f614df-c598-4a98-a3bc-972863485158"
+      ],
+      "replacement": 43721
+    },
+    {
+      "t": 7.41,
+      "pid": 43721,
+      "held": [
+        "c0430b1a-9e97-42b6-bd38-6cf15e4b1a7c"
+      ],
+      "replacement": 43731
+    },
+    {
+      "t": 9.76,
+      "pid": 43689,
+      "held": [],
+      "replacement": 43744
+    },
+    {
+      "t": 11.6,
+      "pid": 43685,
+      "held": [],
+      "replacement": 43754
+    },
+    {
+      "t": 13.73,
+      "pid": 43712,
+      "held": [
+        "94a2a3aa-ec7f-4c12-bb78-27b4c70aa9ba"
+      ],
+      "replacement": 43762
+    },
+    {
+      "t": 16.21,
+      "pid": 43686,
+      "held": [
+        "d23ccf59-ef1e-4add-9085-f0ab9cca3443"
+      ],
+      "replacement": 43777
+    },
+    {
+      "t": 18.71,
+      "pid": 43762,
+      "held": [],
+      "replacement": 43787
+    },
+    {
+      "t": 21.97,
+      "pid": 43688,
+      "held": [],
+      "replacement": 43816
+    },
+    {
+      "t": 24.21,
+      "pid": 43777,
+      "held": [],
+      "replacement": 43825
+    },
+    {
+      "t": 26.68,
+      "pid": 43731,
+      "held": [
+        "eed5f54c-ffb2-4e62-8f98-a3df43154e0d"
+      ],
+      "replacement": 43842
+    },
+    {
+      "t": 28.96,
+      "pid": 43687,
+      "held": [],
+      "replacement": 43850
+    },
+    {
+      "t": 31.36,
+      "pid": 43825,
+      "held": [
+        "25460480-97ca-418f-a839-ac0a726ce45f"
+      ],
+      "replacement": 43864
+    },
+    {
+      "t": 33.17,
+      "pid": 43690,
+      "held": [
+        "13590bfd-36b1-46b9-a98e-5d28f91e247e"
+      ],
+      "replacement": 43872
+    },
+    {
+      "t": 34.96,
+      "pid": 43850,
+      "held": [],
+      "replacement": 43883
+    },
+    {
+      "t": 37.27,
+      "pid": 43744,
+      "held": [
+        "20134bf7-35f6-4bf9-a974-864c6749d7ed"
+      ],
+      "replacement": 43895
+    },
+    {
+      "t": 39.84,
+      "pid": 43864,
+      "held": [],
+      "replacement": 43903
+    },
+    {
+      "t": 41.94,
+      "pid": 43787,
+      "held": [
+        "56cc4644-5885-4f6f-ad03-ce89d6e3e639"
+      ],
+      "replacement": 43917
+    },
+    {
+      "t": 44.5,
+      "pid": 43842,
+      "held": [
+        "5c462d6d-3bb8-4ec8-a53b-abf372c7e5d3"
+      ],
+      "replacement": 43925
+    },
+    {
+      "t": 46.64,
+      "pid": 43754,
+      "held": [
+        "a91e89e3-4f78-42e3-b555-f6740e222ab7"
+      ],
+      "replacement": 43940
+    },
+    {
+      "t": 48.67,
+      "pid": 43940,
+      "held": [
+        "0093b77d-46b6-4dd2-a697-af651c2fc9c3"
+      ],
+      "replacement": 43948
+    },
+    {
+      "t": 51.22,
+      "pid": 43872,
+      "held": [
+        "8950d7a7-bc95-4ef1-ac4e-227b9a9f1c53"
+      ],
+      "replacement": 43962
+    },
+    {
+      "t": 53.26,
+      "pid": 43917,
+      "held": [
+        "c55eb598-3631-41fc-931f-a3e0df34b561"
+      ],
+      "replacement": 43970
+    },
+    {
+      "t": 55.87,
+      "pid": 43925,
+      "held": [
+        "afc2e3fb-aabe-4431-92b1-fd00ddd1e3fc"
+      ],
+      "replacement": 43985
+    },
+    {
+      "t": 57.77,
+      "pid": 43948,
+      "held": [
+        "2ff6248b-8794-48c1-bc99-c95fa162cbb5"
+      ],
+      "replacement": 43994
+    },
+    {
+      "t": 59.49,
+      "pid": 43985,
+      "held": [
+        "62381a6b-6b3d-4ee9-b7e8-51aec49b0f6e"
+      ],
+      "replacement": 44002
+    },
+    {
+      "t": 61.53,
+      "pid": 44002,
+      "held": [
+        "0ce78f2c-8fd3-48ff-900a-7641ab720970"
+      ],
+      "replacement": 44016
+    },
+    {
+      "t": 63.95,
+      "pid": 43903,
+      "held": [],
+      "replacement": 44024
+    },
+    {
+      "t": 65.82,
+      "pid": 43962,
+      "held": [
+        "d43c74cc-2305-4d0b-9749-179f31c37a79"
+      ],
+      "replacement": 44039
+    },
+    {
+      "t": 68.2,
+      "pid": 44016,
+      "held": [
+        "e10a468f-06bf-455d-8c70-bdf64eb79add"
+      ],
+      "replacement": 44047
+    },
+    {
+      "t": 70.75,
+      "pid": 44039,
+      "held": [
+        "04e79cc6-960f-4d54-8d77-d5d825b8e126"
+      ],
+      "replacement": 44058
+    },
+    {
+      "t": 72.71,
+      "pid": 44024,
+      "held": [
+        "ad8dbaa2-c0d4-4251-a83b-c800ba075771"
+      ],
+      "replacement": 44070
+    },
+    {
+      "t": 75.2,
+      "pid": 43816,
+      "held": [
+        "00baa5d4-c24a-4ef9-a508-37e16fb813d4"
+      ],
+      "replacement": 44078
+    },
+    {
+      "t": 77.36,
+      "pid": 43883,
+      "held": [
+        "f5a0b432-3f14-47a4-b734-b086668178e5"
+      ],
+      "replacement": 44093
+    },
+    {
+      "t": 79.79,
+      "pid": 44070,
+      "held": [
+        "44439de7-4f9c-4bbb-950e-3c46bc99b709"
+      ],
+      "replacement": 44101
+    },
+    {
+      "t": 82.76,
+      "pid": 43994,
+      "held": [],
+      "replacement": 44123
+    },
+    {
+      "t": 85.23,
+      "pid": 44123,
+      "held": [
+        "c743ddf0-d47c-4db2-b674-006b09ce2239"
+      ],
+      "replacement": 44132
+    },
+    {
+      "t": 87.99,
+      "pid": 44093,
+      "held": [
+        "b8370952-27d5-4988-ad32-64e70bba4c1f"
+      ],
+      "replacement": 44148
+    },
+    {
+      "t": 90.5,
+      "pid": 44101,
+      "held": [
+        "af697d9d-c1a5-49e3-95b2-098ef4aeb5a8"
+      ],
+      "replacement": 44158
+    },
+    {
+      "t": 93.32,
+      "pid": 44058,
+      "held": [
+        "367c8856-1cca-4bc4-9e59-45a0e62c2a15"
+      ],
+      "replacement": 44177
+    },
+    {
+      "t": 96.57,
+      "pid": 43895,
+      "held": [
+        "3609776b-feca-445c-9e09-5efe6a69135d"
+      ],
+      "replacement": 44188
+    },
+    {
+      "t": 98.5,
+      "pid": 44047,
+      "held": [
+        "4bf18d6f-e278-48a1-bb62-46173e7624db"
+      ],
+      "replacement": 44200
+    },
+    {
+      "t": 101.91,
+      "pid": 44158,
+      "held": [
+        "14075b1e-0ee6-483e-846e-fd8cb721bbd6"
+      ],
+      "replacement": 44210
+    },
+    {
+      "t": 104.79,
+      "pid": 44210,
+      "held": [
+        "72dba98f-0b7e-4dd1-a35b-811bc15bbf37"
+      ],
+      "replacement": 44228
+    },
+    {
+      "t": 107.46,
+      "pid": 44177,
+      "held": [
+        "c6bb02c4-41d1-4770-b073-97f6ddef4228"
+      ],
+      "replacement": 44243
+    },
+    {
+      "t": 109.81,
+      "pid": 43970,
+      "held": [
+        "981c8265-9548-443a-9c38-071d27bfd6b5"
+      ],
+      "replacement": 44251
+    },
+    {
+      "t": 111.84,
+      "pid": 44243,
+      "held": [
+        "8b52b02a-fbc5-41fb-a766-c69b4c587241"
+      ],
+      "replacement": 44261
+    },
+    {
+      "t": 113.35,
+      "pid": 44132,
+      "held": [
+        "1b245f04-4f21-4cfb-836a-3175831bd790"
+      ],
+      "replacement": 44273
+    },
+    {
+      "t": 114.86,
+      "pid": 44273,
+      "held": [
+        "0fe34007-8224-4497-93c4-ffaf2d77ce0f"
+      ],
+      "replacement": 44281
+    },
+    {
+      "t": 116.95,
+      "pid": 44078,
+      "held": [],
+      "replacement": 44293
+    },
+    {
+      "t": 118.94,
+      "pid": 44200,
+      "held": [],
+      "replacement": 44299
+    }
+  ]
+}

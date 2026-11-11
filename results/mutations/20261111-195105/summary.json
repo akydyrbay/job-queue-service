@@ -1,0 +1,168 @@
+{
+  "run": "20261111-195105",
+  "passed": false,
+  "args": {
+    "api_url": "http://localhost:8000",
+    "uds": null,
+    "start_api": true,
+    "reset": true,
+    "jobs": 2000,
+    "workers": 8,
+    "kill_interval": 2.0,
+    "lease": 5,
+    "work_min_ms": 20,
+    "work_max_ms": 100,
+    "fail_rate": 0.05,
+    "concurrency": 64,
+    "race_dup_rate": 0.1,
+    "dup_senders": 4,
+    "cancels": 1000,
+    "cancel_senders": 12,
+    "timeout": 600,
+    "seed": 11,
+    "results_dir": "/Users/bake.72/Desktop/soup/job-queue-service/results/mutations",
+    "note": "MUTATION m3 rerun after adding invariant 8 (no double claims)"
+  },
+  "invariants": [
+    {
+      "name": "1 no job lost",
+      "passed": true,
+      "detail": "db rows=2000 expected=2000 missing_keys=0 acked_but_missing=0 acked_id_mismatch=0 never_acked_by_api=0"
+    },
+    {
+      "name": "2 at most one side effect",
+      "passed": true,
+      "detail": "jobs with >1 effect=0"
+    },
+    {
+      "name": "3 effect matches state",
+      "passed": true,
+      "detail": "succeeded_without_1_effect_or_other_with_effect=0 effects_for_unknown_jobs=0 effect_not_from_final_attempt=0"
+    },
+    {
+      "name": "4 none stuck in queued/running",
+      "passed": true,
+      "detail": "drained_in_time=True queued=0 running=0"
+    },
+    {
+      "name": "5 consistent final state",
+      "passed": true,
+      "detail": "keys_with_different_ids=0 keys_created_twice=0 unexpected_409=0 api_vs_db_mismatch=0/888 list_totals_mismatch=none"
+    },
+    {
+      "name": "6 cancels respected",
+      "passed": true,
+      "detail": "cancel_200=84 cancel_409=425 accepted_but_not_cancelled=0 409_but_not_finished=0 cancelled_without_a_cancel_request=0"
+    },
+    {
+      "name": "7 only harness workers ran jobs",
+      "passed": true,
+      "detail": "foreign_worker_ids=none"
+    },
+    {
+      "name": "8 no double claims",
+      "passed": false,
+      "detail": "extra_claims=322 kills=9 (extra claims must be <= kills)"
+    }
+  ],
+  "stats": {
+    "jobs_reclaimed_after_lease_expiry": 294,
+    "max_attempts_seen": 3,
+    "jobs_cancelled_after_being_claimed": 72,
+    "jobs_given_up": 0,
+    "kills": 9,
+    "kills_while_holding_a_job": 8,
+    "racing_duplicate_posts": 229,
+    "late_duplicate_posts": 113,
+    "cancel_requests": 612,
+    "cancels_aimed_at_running_jobs": 258,
+    "http_errors": {},
+    "worker_events": {
+      "started": 17,
+      "claimed": 2310,
+      "succeeded": 1796,
+      "stale_rejected": 385,
+      "failed": 120,
+      "stopping": 8,
+      "stopped": 8
+    },
+    "duration_s": 21.1,
+    "final_status_counts": {
+      "failed": 120,
+      "succeeded": 1796,
+      "cancelled": 84
+    }
+  },
+  "kills": [
+    {
+      "t": 3.25,
+      "pid": 48171,
+      "held": [
+        "bb1a1849-9ab6-45f8-a854-e5b8e8e4a4e4"
+      ],
+      "replacement": 48190
+    },
+    {
+      "t": 5.17,
+      "pid": 48161,
+      "held": [
+        "529bc4c2-bcd2-497b-8b1d-d718b03039e8"
+      ],
+      "replacement": 48200
+    },
+    {
+      "t": 7.69,
+      "pid": 48158,
+      "held": [
+        "d929dbb7-5672-47d3-8e3e-3188710c886b"
+      ],
+      "replacement": 48214
+    },
+    {
+      "t": 9.62,
+      "pid": 48160,
+      "held": [
+        "293c5658-e5c6-4ad7-862b-38b30e8e00a4"
+      ],
+      "replacement": 48219
+    },
+    {
+      "t": 11.98,
+      "pid": 48170,
+      "held": [
+        "54397297-6168-4363-a7aa-efc71f28562d"
+      ],
+      "replacement": 48233
+    },
+    {
+      "t": 14.44,
+      "pid": 48159,
+      "held": [
+        "781d45be-9152-43a6-b120-4ad53638a020"
+      ],
+      "replacement": 48243
+    },
+    {
+      "t": 17.05,
+      "pid": 48190,
+      "held": [
+        "0a7ca3b7-2cb0-4eb4-a744-18bb9d219971"
+      ],
+      "replacement": 48251
+    },
+    {
+      "t": 19.25,
+      "pid": 48214,
+      "held": [],
+      "replacement": 48262
+    },
+    {
+      "t": 21.15,
+      "pid": 48166,
+      "held": [
+        "21abcaaf-e1f4-40d8-af01-f6abd5a852f9"
+      ],
+      "replacement": 48270
+    }
+  ]
+}

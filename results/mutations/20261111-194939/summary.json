@@ -1,0 +1,170 @@
+{
+  "run": "20261111-194939",
+  "passed": false,
+  "args": {
+    "api_url": "http://localhost:8000",
+    "uds": null,
+    "start_api": true,
+    "reset": true,
+    "jobs": 2000,
+    "workers": 8,
+    "kill_interval": 2.0,
+    "lease": 5,
+    "work_min_ms": 20,
+    "work_max_ms": 100,
+    "fail_rate": 0.05,
+    "concurrency": 64,
+    "race_dup_rate": 0.1,
+    "dup_senders": 4,
+    "cancels": 1000,
+    "cancel_senders": 12,
+    "timeout": 600,
+    "seed": 11,
+    "results_dir": "/Users/bake.72/Desktop/soup/job-queue-service/results/mutations",
+    "note": "MUTATION m2: side effect inserted before/outside the guarded update"
+  },
+  "invariants": [
+    {
+      "name": "1 no job lost",
+      "passed": true,
+      "detail": "db rows=2000 expected=2000 missing_keys=0 acked_but_missing=0 acked_id_mismatch=0 never_acked_by_api=0"
+    },
+    {
+      "name": "2 at most one side effect",
+      "passed": true,
+      "detail": "jobs with >1 effect=0"
+    },
+    {
+      "name": "3 effect matches state",
+      "passed": false,
+      "detail": "succeeded_without_1_effect_or_other_with_effect=4 effects_for_unknown_jobs=0 effect_not_from_final_attempt=0 e.g. ['ee5fd851-7d97-4325-801d-9c0ad449d451', 'eb3c6f9a-8fe0-4566-a5d6-41879a7a1c98', '5d756dc1-a3a9-48db-a061-dda1f6a0b30b', 'cfe633e8-2fc3-4204-9c01-60e681f75fab']"
+    },
+    {
+      "name": "4 none stuck in queued/running",
+      "passed": true,
+      "detail": "drained_in_time=True queued=0 running=0"
+    },
+    {
+      "name": "5 consistent final state",
+      "passed": true,
+      "detail": "keys_with_different_ids=0 keys_created_twice=0 unexpected_409=0 api_vs_db_mismatch=0/708 list_totals_mismatch=none"
+    },
+    {
+      "name": "6 cancels respected",
+      "passed": true,
+      "detail": "cancel_200=10 cancel_409=268 accepted_but_not_cancelled=0 409_but_not_finished=0 cancelled_without_a_cancel_request=0"
+    },
+    {
+      "name": "7 only harness workers ran jobs",
+      "passed": true,
+      "detail": "foreign_worker_ids=none"
+    }
+  ],
+  "stats": {
+    "jobs_reclaimed_after_lease_expiry": 1,
+    "max_attempts_seen": 2,
+    "jobs_cancelled_after_being_claimed": 9,
+    "jobs_given_up": 0,
+    "kills": 11,
+    "kills_while_holding_a_job": 5,
+    "racing_duplicate_posts": 188,
+    "late_duplicate_posts": 129,
+    "cancel_requests": 315,
+    "cancels_aimed_at_running_jobs": 104,
+    "http_errors": {},
+    "worker_events": {
+      "started": 19,
+      "claimed": 2000,
+      "succeeded": 1893,
+      "failed": 97,
+      "stale_rejected": 4,
+      "stopping": 8,
+      "stopped": 8
+    },
+    "duration_s": 25.0,
+    "final_status_counts": {
+      "failed": 97,
+      "succeeded": 1893,
+      "cancelled": 10
+    }
+  },
+  "kills": [
+    {
+      "t": 3.46,
+      "pid": 47743,
+      "held": [],
+      "replacement": 47774
+    },
+    {
+      "t": 5.41,
+      "pid": 47740,
+      "held": [],
+      "replacement": 47787
+    },
+    {
+      "t": 7.35,
+      "pid": 47741,
+      "held": [],
+      "replacement": 47799
+    },
+    {
+      "t": 9.57,
+      "pid": 47774,
+      "held": [],
+      "replacement": 47813
+    },
+    {
+      "t": 11.69,
+      "pid": 47799,
+      "held": [],
+      "replacement": 47824
+    },
+    {
+      "t": 13.62,
+      "pid": 47744,
+      "held": [],
+      "replacement": 47832
+    },
+    {
+      "t": 15.36,
+      "pid": 47742,
+      "held": [
+        "b5623fdc-1cb6-427b-a766-4de0206b6f25"
+      ],
+      "replacement": 47841
+    },
+    {
+      "t": 17.77,
+      "pid": 47841,
+      "held": [
+        "f7b4ac5f-3419-45b1-a93e-095b4312f1ef"
+      ],
+      "replacement": 47851
+    },
+    {
+      "t": 19.85,
+      "pid": 47813,
+      "held": [
+        "e6cf3042-bd4e-4849-af18-5701a091151a"
+      ],
+      "replacement": 47859
+    },
+    {
+      "t": 22.14,
+      "pid": 47824,
+      "held": [
+        "aa88de3f-4a9f-4d37-a42b-82f63fff1e1a"
+      ],
+      "replacement": 47870
+    },
+    {
+      "t": 24.33,
+      "pid": 47832,
+      "held": [
+        "b4a15495-be9d-4fdd-8dab-bd7d7a5e8a1e"
+      ],
+      "replacement": 47879
+    }
+  ],
+  "note_corrected": "note fixed after the run (labelling mistake); measured values unchanged"
+}

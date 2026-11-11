@@ -1,0 +1,9 @@
+run,result,jobs,workers,kills,reclaimed,duration_s,final_status_counts,note
+20261111-193041,PASS,10000,8,43,22,94.0,"{""cancelled"": 354, ""failed"": 452, ""succeeded"": 9194}","local: Postgres 16 (pgserver), uvicorn over unix socket, macOS"
+20261111-193241,PASS,10000,8,45,12,100.1,"{""cancelled"": 510, ""failed"": 495, ""succeeded"": 8995}","local: Postgres 16 (pgserver), uvicorn over unix socket, macOS"
+20261111-193432,PASS,10000,8,42,28,92.2,"{""cancelled"": 29, ""failed"": 523, ""succeeded"": 9448}","local: Postgres 16 (pgserver), uvicorn over unix socket, macOS"
+20261111-193634,PASS,10000,8,51,11,118.6,"{""cancelled"": 36, ""failed"": 490, ""succeeded"": 9474}","local: Postgres 16 (pgserver), uvicorn over unix socket, macOS; 12 cancel senders"
+20261111-193846,PASS,10000,8,52,8,118.8,"{""cancelled"": 34, ""failed"": 518, ""succeeded"": 9448}","local: Postgres 16 (pgserver), uvicorn over unix socket, macOS; 12 cancel senders"
+20261111-194128,PASS,10000,8,91,46,197.6,"{""cancelled"": 288, ""failed"": 520, ""succeeded"": 9192}","local: Postgres 16 (pgserver), uvicorn over unix socket, macOS; 12 cancel senders; 5% slow jobs"
+20261111-194459,PASS,10000,8,91,43,195.6,"{""cancelled"": 279, ""failed"": 484, ""succeeded"": 9237}","local: Postgres 16 (pgserver), uvicorn over unix socket, macOS; 12 cancel senders; 5% slow jobs"
+20261111-195132,PASS,10000,8,46,6,97.9,"{""cancelled"": 43, ""failed"": 510, ""succeeded"": 9447}","local: Postgres 16 (pgserver), uvicorn over unix socket, macOS; 12 cancel senders; no slow jobs; invariant 8 added"

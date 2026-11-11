@@ -1,0 +1,110 @@
+[    0.0s] run 20261111-193634: --start-api --reset --database-url postgresql://postgres:@/postgres?host=/private/tmp/jq_pgtest --seed 4 --note local: Postgres 16 (pgserver), uvicorn over unix socket, macOS; 12 cancel senders
+[    1.3s] tables truncated (--reset)
+[    1.3s] api health: 200 {"status":"ok","database":"ok"}
+[    1.5s] started 8 workers: [43685, 43686, 43687, 43688, 43689, 43690, 43691, 43692]
+[    3.4s] kill -9 pid=43692 holding=ee639565-61ea-4ec5-9abb-b83b77adf0c1 -> started pid=43712 (kill #1)
+[    5.1s] kill -9 pid=43691 holding=34f614df-c598-4a98-a3bc-972863485158 -> started pid=43721 (kill #2)
+[    6.9s] submitting: acked=447 late_dups=26 cancels=57 db={'cancelled': 2, 'failed': 24, 'queued': 8, 'running': 8, 'succeeded': 404} kills=2
+[    7.4s] kill -9 pid=43721 holding=c0430b1a-9e97-42b6-bd38-6cf15e4b1a7c -> started pid=43731 (kill #3)
+[    9.8s] kill -9 pid=43689 holding=- -> started pid=43744 (kill #4)
+[   11.6s] kill -9 pid=43685 holding=- -> started pid=43754 (kill #5)
+[   11.9s] submitting: acked=887 late_dups=49 cancels=103 db={'cancelled': 3, 'failed': 48, 'queued': 9, 'running': 8, 'succeeded': 820} kills=5
+[   13.7s] kill -9 pid=43712 holding=94a2a3aa-ec7f-4c12-bb78-27b4c70aa9ba -> started pid=43762 (kill #6)
+[   16.2s] kill -9 pid=43686 holding=d23ccf59-ef1e-4add-9085-f0ab9cca3443 -> started pid=43777 (kill #7)
+[   17.0s] submitting: acked=1417 late_dups=79 cancels=156 db={'cancelled': 5, 'failed': 77, 'queued': 5, 'running': 8, 'succeeded': 1322} kills=7
+[   18.7s] kill -9 pid=43762 holding=- -> started pid=43787 (kill #8)
+[   22.0s] kill -9 pid=43688 holding=- -> started pid=43816 (kill #9)
+[   22.4s] submitting: acked=1747 late_dups=99 cancels=195 db={'cancelled': 7, 'failed': 91, 'succeeded': 1649} kills=9
+[   24.2s] kill -9 pid=43777 holding=- -> started pid=43825 (kill #10)
+[   26.7s] kill -9 pid=43731 holding=eed5f54c-ffb2-4e62-8f98-a3df43154e0d -> started pid=43842 (kill #11)
+[   27.4s] submitting: acked=1998 late_dups=110 cancels=225 db={'cancelled': 9, 'failed': 102, 'queued': 2, 'running': 8, 'succeeded': 1878} kills=11
+[   29.0s] kill -9 pid=43687 holding=- -> started pid=43850 (kill #12)
+[   31.4s] kill -9 pid=43825 holding=25460480-97ca-418f-a839-ac0a726ce45f -> started pid=43864 (kill #13)
+[   32.5s] submitting: acked=2328 late_dups=132 cancels=271 db={'cancelled': 11, 'failed': 118, 'queued': 9, 'running': 6, 'succeeded': 2186} kills=13
+[   33.2s] kill -9 pid=43690 holding=13590bfd-36b1-46b9-a98e-5d28f91e247e -> started pid=43872 (kill #14)
+[   35.0s] kill -9 pid=43850 holding=- -> started pid=43883 (kill #15)
+[   37.3s] kill -9 pid=43744 holding=20134bf7-35f6-4bf9-a974-864c6749d7ed -> started pid=43895 (kill #16)
+[   37.7s] submitting: acked=2667 late_dups=154 cancels=317 db={'cancelled': 12, 'failed': 136, 'queued': 7, 'running': 8, 'succeeded': 2506} kills=16
+[   39.8s] kill -9 pid=43864 holding=- -> started pid=43903 (kill #17)
+[   41.9s] kill -9 pid=43787 holding=56cc4644-5885-4f6f-ad03-ce89d6e3e639 -> started pid=43917 (kill #18)
+[   42.8s] submitting: acked=3079 late_dups=176 cancels=374 db={'cancelled': 14, 'failed': 154, 'queued': 5, 'running': 2, 'succeeded': 2908} kills=18
+[   44.5s] kill -9 pid=43842 holding=5c462d6d-3bb8-4ec8-a53b-abf372c7e5d3 -> started pid=43925 (kill #19)
+[   46.6s] kill -9 pid=43754 holding=a91e89e3-4f78-42e3-b555-f6740e222ab7 -> started pid=43940 (kill #20)
+[   47.9s] submitting: acked=3598 late_dups=197 cancels=430 db={'cancelled': 18, 'failed': 180, 'queued': 7, 'running': 9, 'succeeded': 3385} kills=20
+[   48.7s] kill -9 pid=43940 holding=0093b77d-46b6-4dd2-a697-af651c2fc9c3 -> started pid=43948 (kill #21)
+[   51.2s] kill -9 pid=43872 holding=8950d7a7-bc95-4ef1-ac4e-227b9a9f1c53 -> started pid=43962 (kill #22)
+[   52.9s] submitting: acked=4132 late_dups=225 cancels=490 db={'cancelled': 20, 'failed': 202, 'queued': 3, 'running': 8, 'succeeded': 3901} kills=22
+[   53.3s] kill -9 pid=43917 holding=c55eb598-3631-41fc-931f-a3e0df34b561 -> started pid=43970 (kill #23)
+[   55.9s] kill -9 pid=43925 holding=afc2e3fb-aabe-4431-92b1-fd00ddd1e3fc -> started pid=43985 (kill #24)
+[   57.8s] kill -9 pid=43948 holding=2ff6248b-8794-48c1-bc99-c95fa162cbb5 -> started pid=43994 (kill #25)
+[   58.0s] submitting: acked=4643 late_dups=245 cancels=555 db={'cancelled': 21, 'failed': 223, 'queued': 9, 'running': 9, 'succeeded': 4383} kills=25
+[   59.5s] kill -9 pid=43985 holding=62381a6b-6b3d-4ee9-b7e8-51aec49b0f6e -> started pid=44002 (kill #26)
+[   61.5s] kill -9 pid=44002 holding=0ce78f2c-8fd3-48ff-900a-7641ab720970 -> started pid=44016 (kill #27)
+[   63.0s] submitting: acked=5083 late_dups=269 cancels=595 db={'cancelled': 25, 'failed': 239, 'queued': 6, 'running': 8, 'succeeded': 4807} kills=27
+[   64.0s] kill -9 pid=43903 holding=- -> started pid=44024 (kill #28)
+[   65.8s] kill -9 pid=43962 holding=d43c74cc-2305-4d0b-9749-179f31c37a79 -> started pid=44039 (kill #29)
+[   68.2s] submitting: acked=5579 late_dups=304 cancels=648 db={'cancelled': 27, 'failed': 266, 'queued': 17, 'running': 8, 'succeeded': 5262} kills=29
+[   68.2s] kill -9 pid=44016 holding=e10a468f-06bf-455d-8c70-bdf64eb79add -> started pid=44047 (kill #30)
+[   70.8s] kill -9 pid=44039 holding=04e79cc6-960f-4d54-8d77-d5d825b8e126 -> started pid=44058 (kill #31)
+[   72.7s] kill -9 pid=44024 holding=ad8dbaa2-c0d4-4251-a83b-c800ba075771 -> started pid=44070 (kill #32)
+[   73.4s] submitting: acked=6040 late_dups=325 cancels=700 db={'cancelled': 29, 'failed': 285, 'running': 4, 'succeeded': 5722} kills=32
+[   75.2s] kill -9 pid=43816 holding=00baa5d4-c24a-4ef9-a508-37e16fb813d4 -> started pid=44078 (kill #33)
+[   77.4s] kill -9 pid=43883 holding=f5a0b432-3f14-47a4-b734-b086668178e5 -> started pid=44093 (kill #34)
+[   78.4s] submitting: acked=6371 late_dups=349 cancels=753 db={'cancelled': 31, 'failed': 305, 'queued': 15, 'running': 7, 'succeeded': 6016} kills=34
+[   79.8s] kill -9 pid=44070 holding=44439de7-4f9c-4bbb-950e-3c46bc99b709 -> started pid=44101 (kill #35)
+[   82.8s] kill -9 pid=43994 holding=- -> started pid=44123 (kill #36)
+[   83.8s] submitting: acked=6957 late_dups=379 cancels=833 db={'cancelled': 33, 'failed': 326, 'queued': 70, 'running': 6, 'succeeded': 6522} kills=36
+[   85.2s] kill -9 pid=44123 holding=c743ddf0-d47c-4db2-b674-006b09ce2239 -> started pid=44132 (kill #37)
+[   88.0s] kill -9 pid=44093 holding=b8370952-27d5-4988-ad32-64e70bba4c1f -> started pid=44148 (kill #38)
+[   89.2s] submitting: acked=7415 late_dups=405 cancels=895 db={'cancelled': 34, 'failed': 350, 'queued': 30, 'running': 7, 'succeeded': 6994} kills=38
+[   90.5s] kill -9 pid=44101 holding=af697d9d-c1a5-49e3-95b2-098ef4aeb5a8 -> started pid=44158 (kill #39)
+[   93.3s] kill -9 pid=44058 holding=367c8856-1cca-4bc4-9e59-45a0e62c2a15 -> started pid=44177 (kill #40)
+[   94.6s] submitting: acked=8108 late_dups=443 cancels=980 db={'cancelled': 36, 'failed': 384, 'queued': 216, 'running': 7, 'succeeded': 7465} kills=40
+[   96.6s] kill -9 pid=43895 holding=3609776b-feca-445c-9e09-5efe6a69135d -> started pid=44188 (kill #41)
+[   98.5s] kill -9 pid=44047 holding=4bf18d6f-e278-48a1-bb62-46173e7624db -> started pid=44200 (kill #42)
+[   99.9s] submitting: acked=8674 late_dups=472 cancels=1001 db={'cancelled': 36, 'failed': 405, 'queued': 310, 'running': 10, 'succeeded': 7922} kills=42
+[  101.9s] kill -9 pid=44158 holding=14075b1e-0ee6-483e-846e-fd8cb721bbd6 -> started pid=44210 (kill #43)
+[  104.8s] kill -9 pid=44210 holding=72dba98f-0b7e-4dd1-a35b-811bc15bbf37 -> started pid=44228 (kill #44)
+[  105.1s] submitting: acked=9303 late_dups=505 cancels=1001 db={'cancelled': 36, 'failed': 430, 'queued': 451, 'running': 8, 'succeeded': 8378} kills=44
+[  107.5s] kill -9 pid=44177 holding=c6bb02c4-41d1-4770-b073-97f6ddef4228 -> started pid=44243 (kill #45)
+[  108.8s] submission done: 10000/10000 acked, 966 racing duplicates, 543 late duplicates so far
+[  108.9s] progress {'cancelled': 36, 'failed': 453, 'queued': 758, 'running': 9, 'succeeded': 8744} kills=45
+[  109.8s] kill -9 pid=43970 holding=981c8265-9548-443a-9c38-071d27bfd6b5 -> started pid=44251 (kill #46)
+[  110.2s] submitting: acked=10000 late_dups=543 cancels=1001 db={'cancelled': 36, 'failed': 463, 'queued': 625, 'running': 8, 'succeeded': 8868} kills=46
+[  111.8s] kill -9 pid=44243 holding=8b52b02a-fbc5-41fb-a766-c69b4c587241 -> started pid=44261 (kill #47)
+[  113.3s] kill -9 pid=44132 holding=1b245f04-4f21-4cfb-836a-3175831bd790 -> started pid=44273 (kill #48)
+[  114.0s] progress {'cancelled': 36, 'failed': 480, 'queued': 221, 'running': 11, 'succeeded': 9252} kills=48
+[  114.9s] kill -9 pid=44273 holding=0fe34007-8224-4497-93c4-ffaf2d77ce0f -> started pid=44281 (kill #49)
+[  117.0s] kill -9 pid=44078 holding=- -> started pid=44293 (kill #50)
+[  118.9s] kill -9 pid=44200 holding=- -> started pid=44299 (kill #51)
+[  119.0s] progress {'cancelled': 36, 'failed': 490, 'running': 1, 'succeeded': 9473} kills=51
+[  120.1s] queue drained after 118.6s
+[  120.3s] workers stopped with SIGTERM, exit codes: Counter({0: 8})
+[  120.3s] 
+[  120.3s] === invariants ===
+[  120.4s] PASS  1 no job lost: db rows=10000 expected=10000 missing_keys=0 acked_but_missing=0 acked_id_mismatch=0 never_acked_by_api=0
+[  120.5s] PASS  2 at most one side effect: jobs with >1 effect=0
+[  120.5s] PASS  3 effect matches state: succeeded_without_1_effect_or_other_with_effect=0 effects_for_unknown_jobs=0 effect_not_from_final_attempt=0
+[  120.5s] PASS  4 none stuck in queued/running: drained_in_time=True queued=0 running=0
+[  130.7s] PASS  5 consistent final state: keys_with_different_ids=0 keys_created_twice=0 unexpected_409=0 api_vs_db_mismatch=0/1366 list_totals_mismatch=none
+[  130.7s] PASS  6 cancels respected: cancel_200=36 cancel_409=876 accepted_but_not_cancelled=0 409_but_not_finished=0 cancelled_without_a_cancel_request=0
+[  130.7s] PASS  7 only harness workers ran jobs: foreign_worker_ids=none
+[  130.8s] 
+[  130.8s] === stats ===
+[  130.8s] jobs_reclaimed_after_lease_expiry: 11
+[  130.8s] max_attempts_seen: 2
+[  130.8s] jobs_cancelled_after_being_claimed: 36
+[  130.8s] jobs_given_up: 0
+[  130.8s] kills: 51
+[  130.8s] kills_while_holding_a_job: 39
+[  130.8s] racing_duplicate_posts: 966
+[  130.8s] late_duplicate_posts: 543
+[  130.8s] cancel_requests: 1001
+[  130.8s] cancels_aimed_at_running_jobs: 460
+[  130.8s] http_errors: {}
+[  130.8s] worker_events: {'started': 59, 'claimed': 10009, 'succeeded': 9474, 'failed': 490, 'stopping': 8, 'stopped': 8, 'stale_rejected': 4}
+[  130.8s] duration_s: 118.6
+[  130.8s] final_status_counts: {'failed': 490, 'succeeded': 9474, 'cancelled': 36}
+[  130.8s] 
+[  130.8s] RESULT: PASS
+[  131.2s] raw output: /Users/bake.72/Desktop/soup/job-queue-service/results/20261111-193634

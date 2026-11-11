@@ -1,0 +1,48 @@
+[    0.0s] run 20261111-194911: --start-api --reset --database-url postgresql://postgres:@/postgres?host=/private/tmp/jq_pgtest --seed 11 --jobs 2000 --results-dir /Users/bake.72/Desktop/soup/job-queue-service/results/mutations --note MUTATION m3: naive claim (SELECT then UPDATE, no row lock)
+[    2.2s] tables truncated (--reset)
+[    2.3s] api health: 200 {"status":"ok","database":"ok"}
+[    2.4s] started 8 workers: [47598, 47599, 47600, 47601, 47602, 47603, 47604, 47605]
+[    4.9s] kill -9 pid=47602 holding=- -> started pid=47625 (kill #1)
+[    6.7s] kill -9 pid=47600 holding=- -> started pid=47641 (kill #2)
+[    7.5s] submitting: acked=229 late_dups=18 cancels=42 db={'cancelled': 2, 'failed': 10, 'queued': 4, 'running': 8, 'succeeded': 206} kills=2
+[    9.0s] kill -9 pid=47605 holding=f40725c2-c37c-445a-8bf0-414086e09a5b -> started pid=47651 (kill #3)
+[   11.0s] kill -9 pid=47651 holding=12ebf881-e357-48c2-b010-26fb871aa450 -> started pid=47660 (kill #4)
+[   12.6s] submitting: acked=837 late_dups=54 cancels=119 db={'cancelled': 4, 'failed': 34, 'queued': 14, 'running': 8, 'succeeded': 778} kills=4
+[   12.9s] kill -9 pid=47641 holding=7a714e09-3a45-4604-9439-1de6fed70dde -> started pid=47668 (kill #5)
+[   14.9s] kill -9 pid=47604 holding=a64d5363-b526-4bd2-b52a-06dbb0bafced -> started pid=47678 (kill #6)
+[   16.8s] kill -9 pid=47603 holding=77125427-bdac-4f73-b01f-0852983c717f -> started pid=47686 (kill #7)
+[   17.6s] submitting: acked=1425 late_dups=89 cancels=184 db={'cancelled': 7, 'failed': 65, 'queued': 8, 'running': 8, 'succeeded': 1338} kills=7
+[   19.1s] kill -9 pid=47601 holding=380ddb49-3289-4e2a-9108-737abde8a376 -> started pid=47697 (kill #8)
+[   21.6s] kill -9 pid=47598 holding=c35d2eab-5b95-4a73-8437-b3daac1c5ba4 -> started pid=47706 (kill #9)
+[   22.4s] submission done: 2000/2000 acked, 204 racing duplicates, 131 late duplicates so far
+[   22.4s] queue drained after 20.1s
+[   22.6s] submitting: acked=2000 late_dups=131 cancels=267 db={'cancelled': 9, 'failed': 86, 'succeeded': 1905} kills=9
+[   22.9s] workers stopped with SIGTERM, exit codes: Counter({0: 8})
+[   22.9s] 
+[   22.9s] === invariants ===
+[   22.9s] PASS  1 no job lost: db rows=2000 expected=2000 missing_keys=0 acked_but_missing=0 acked_id_mismatch=0 never_acked_by_api=0
+[   22.9s] PASS  2 at most one side effect: jobs with >1 effect=0
+[   22.9s] PASS  3 effect matches state: succeeded_without_1_effect_or_other_with_effect=0 effects_for_unknown_jobs=0 effect_not_from_final_attempt=0
+[   22.9s] PASS  4 none stuck in queued/running: drained_in_time=True queued=0 running=0
+[   26.5s] PASS  5 consistent final state: keys_with_different_ids=0 keys_created_twice=0 unexpected_409=0 api_vs_db_mismatch=0/682 list_totals_mismatch=none
+[   26.5s] FAIL  6 cancels respected: cancel_200=11 cancel_409=218 accepted_but_not_cancelled=2 409_but_not_finished=0 cancelled_without_a_cancel_request=0 e.g. ['d3a6c710-fadb-4e7c-81d6-9515d572c209', '3a3f52fe-417e-4564-8088-536048839f9c']
+[   26.5s] PASS  7 only harness workers ran jobs: foreign_worker_ids=none
+[   26.5s] 
+[   26.5s] === stats ===
+[   26.5s] jobs_reclaimed_after_lease_expiry: 0
+[   26.5s] max_attempts_seen: 1
+[   26.5s] jobs_cancelled_after_being_claimed: 8
+[   26.5s] jobs_given_up: 0
+[   26.5s] kills: 9
+[   26.5s] kills_while_holding_a_job: 7
+[   26.5s] racing_duplicate_posts: 204
+[   26.5s] late_duplicate_posts: 131
+[   26.5s] cancel_requests: 267
+[   26.5s] cancels_aimed_at_running_jobs: 112
+[   26.5s] http_errors: {}
+[   26.5s] worker_events: {'started': 16, 'claimed': 1999, 'succeeded': 1905, 'failed': 86, 'stopping': 8, 'stopped': 8}
+[   26.5s] duration_s: 20.1
+[   26.5s] final_status_counts: {'failed': 86, 'succeeded': 1905, 'cancelled': 9}
+[   26.5s] 
+[   26.5s] RESULT: FAIL
+[   26.7s] raw output: /Users/bake.72/Desktop/soup/job-queue-service/results/mutations/20261111-194911
